@@ -27,10 +27,10 @@ let reverseValue = !value;
 
 // 첫번째 Falsy를 찾는 연산 (&&)
 let whichFalsy = true && " " && [] && { thIsisFalsy: false };
-//전부 true 임. " " 공백이 있기 때문에 true. 배열 자체도 값을 가짐(true). 마지막은 객체(key : value) 객체 자체도 true임
+//전부 true 임. " " 공백이 있기 때문에 true. 배열 자체도 값을 가짐(true). 마지막은 객체(key : value) 객체 자체도 true임. 안의 값이 false인 것은 상관 없음
 //모두 true이기 때문에 마지막 값 반환
 
-// 첫번째 Truthy를 찾는 연산 (||)
+// 첫번째 Truthy를 찾는 연산 (||) 2 리턴 ([2, 3].length])
 let whichTruthy = false || "" || [2, 3].length || { thisIsTruthy: true };
 
 let userName = prompt("ID를 입력하세요", "");

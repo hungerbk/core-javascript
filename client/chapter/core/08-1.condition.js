@@ -44,6 +44,7 @@ if (didWatchMovie === "yes") {
     console.log("그렇구나");
   }
 }
+// 처음에 작성한 코드
 
 if (didWatchMovie.includes("yes")) {
   console.log("재밌었니?");
@@ -52,6 +53,7 @@ if (didWatchMovie.includes("yes")) {
 } else {
   console.log("그렇구나");
 }
+// 수업 코드. string에서는 includes 함수를 사용할 수 있다.
 
 let message2 = didWatchMovie.includes("yes") ? "재밌었니?" : goingToWatchMovie === "yes" ? "언제볼거니?" : "그렇구나";
 

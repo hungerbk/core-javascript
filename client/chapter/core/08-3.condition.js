@@ -64,6 +64,9 @@ if (thisTime === MORNING) {
 
 /* switch vs. if -------------------------------------------------------- */
 
+// 재사용할 수 있게 랜덤 숫자를 만드는 것도 함수로 만들어 버림
+// Math.round()는 반올림하는 함수
+// Math.random()은 0부터 1보다 작은 숫자까지 랜덤 숫자를 반환함. 원하는 최댓값이 있는 경우, 그 수만큼 곱해주면 됨
 function getRandom(n) {
   return Math.round(Math.random() * n);
 }
@@ -89,7 +92,7 @@ function getDay(dayValue) {
   }
 }
 
-// 0~ 6 값을 받는다
+// 0 ~ 6 값을 받는다
 
 // let number = +prompt("0~6까지 숫자르 입력하세요", "");
 let result = getDay(getRandom(4));
