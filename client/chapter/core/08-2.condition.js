@@ -35,9 +35,9 @@ let whichTruthy = false || "" || [2, 3].length || { thisIsTruthy: true };
 
 let userName = prompt("ID를 입력하세요", "");
 
-if (userName === "Admin") {
+if (userName.localeCompare("Admin", "en", { sensitivity: "base" }) === 0) {
   let pw = prompt("비밀번호를 입력하세요", "");
-  if (pw === "TheMaster") {
+  if (pw.localeCompare("TheMaster", "en", { sensitivity: "base" }) === 0) {
     alert("환영합니다!");
   } else if (pw === "" || pw === null) {
     alert("취소했습니다.");
