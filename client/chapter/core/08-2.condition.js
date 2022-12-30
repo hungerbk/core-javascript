@@ -35,18 +35,41 @@ let whichTruthy = false || "" || [2, 3].length || { thisIsTruthy: true };
 
 let userName = prompt("ID를 입력하세요", "");
 
-if (userName.localeCompare("Admin", "en", { sensitivity: "base" }) === 0) {
+// if (userName?.localeCompare("Admin", "en", { sensitivity: "base" }) === 0) {
+//   let pw = prompt("비밀번호를 입력하세요", "");
+//   if (pw?.localeCompare("TheMaster", "en", { sensitivity: "base" }) === 0) {
+//     alert("환영합니다!");
+//   } else if (pw === "" || pw === null) {
+//     alert("취소했습니다.");
+//   } else {
+//     alert("인증에 실패하였습니다.");
+//   }
+// } else if (userName === "" || userName === null) {
+//   alert("취소했습니다.");
+// } else {
+//   alert("인증되지 않은 사용자입니다.");
+// }
+//대소문자 구분 없이 가능하게 만들어 보기
+if (userName?.toLowerCase() === "admin") {
   let pw = prompt("비밀번호를 입력하세요", "");
-  if (pw.localeCompare("TheMaster", "en", { sensitivity: "base" }) === 0) {
+  if (pw?.toLowerCase() === "themaster") {
     alert("환영합니다!");
   } else if (pw === "" || pw === null) {
     alert("취소했습니다.");
   } else {
     alert("인증에 실패하였습니다.");
   }
-} else if (userName === "" || userName === null) {
+} else if (userName.replace(/\s*/g, "") === "" || userName === null) {
+  // 모든 공백을 빈 문자열로 반환하는 정규식 사용. 이걸 사용하지 않으면 공백을 인식 못해서(문자로 취급해서) 다른 코드가 실행 됨
   alert("취소했습니다.");
 } else {
   alert("인증되지 않은 사용자입니다.");
 }
-//대소문자 구분 없이 가능하게 만들어 보기
+
+// let num = +prompt("숫자를 입력하세요", 0);
+
+// if (num % 2 === 0) {
+//   console.log("짝수입니다.");
+// } else {
+//   console.log("홀수입니다.");
+// }
