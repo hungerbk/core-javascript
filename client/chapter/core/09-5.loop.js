@@ -2,6 +2,28 @@
 /* For Of Loop                                                            */
 /* ---------------------------------------------------------------------- */
 
+// String, Array, Array-like  =  iterable
+
+const arrayLike = {
+  0: "body",
+  1: "head",
+  2: "div",
+  length: 3,
+  // [Symbol.iterator](){...}
+};
+
+// for(let value of arrayLike){
+// console.log(value);
+// }
+
+let str = "유사배열";
+
+// console.log(str);
+
+for (let value of str) {
+  // console.log(value);
+}
+
 const languages = [
   {
     id: "ecma-262",
@@ -29,24 +51,27 @@ const languages = [
   },
 ];
 
-// // for ~ of 문
-// for (let value of languages) {
-//   console.table(value.name);
-// }
-// // - 특정 조건에서 건너띄기
-// for (let value of languages) {
-//   if (value.name === "Java") continue;
+// for ~ of 문
+// - 특정 조건에서 건너띄기
 
-//   console.table(value.name);
-// }
-// - 특정 조건에서 중단하기
 for (let value of languages) {
-  let name = value.name;
+  // console.table(value.name);
 
+  if (value.name === "Java") continue;
+
+  // console.table(value);
+}
+
+for (let value of languages) {
+  // console.table(value.name);
+
+  let name = value.name;
   if (name.includes("C#")) break;
 
-  console.table(name);
+  // console.table(value);
 }
+
+// - 특정 조건에서 중단하기
 
 const randomUser = {
   gender: "female",
@@ -58,7 +83,10 @@ const randomUser = {
     country: "United Kingdom",
     postcode: "FO5E 4TN",
     coordinates: { latitude: "-4.3301", longitude: "155.0223" },
-    timezone: { offset: "-4:00", description: "Atlantic Time (Canada), Caracas, La Paz" },
+    timezone: {
+      offset: "-4:00",
+      description: "Atlantic Time (Canada), Caracas, La Paz",
+    },
   },
   email: "carol.may@example.com",
   login: {
@@ -87,3 +115,66 @@ const randomUser = {
 // - for ~ in 문
 // - for ~ of 문
 // - 성능 비교 진단
+
+/* 
+for(let value in randomUser){
+  if(Object.prototype.hasOwnProperty.call(randomUser,value)){
+    const L1 = randomUser[value];
+    console.log('Level 1 : ' + value);
+    if(typeof L1 === 'object'){
+      for(let value in L1){
+        if(Object.prototype.hasOwnProperty.call(L1,value)){
+          const L2 = L1[value];
+          console.log('\tLevel 2 : ' + value);
+          if(typeof L2 === 'object'){
+            for(let value in L2){
+              if(Object.prototype.hasOwnProperty.call(L2,value)){
+                const L3 = L2[value];
+                console.log('\t\tLevel 3 : ' + value);
+              }
+            }
+          }
+        } 
+      } 
+    }
+  }
+}
+}
+ */
+
+/* 
+
+Object.keys
+Object.values
+Object.entries
+
+ */
+
+// console.log(Object.values(randomUser));
+/* 
+
+for(let key of Object.keys(randomUser)){
+  console.log(key);
+}
+
+for(let values of Object.values(randomUser)){
+  console.log(values);
+}
+
+ */
+
+for (let keyValue of Object.entries(randomUser)) {
+  let key = keyValue[0];
+  let value = keyValue[1];
+
+  console.log("L1 : ", key);
+
+  if (typeof value === "object") {
+    for (let keyValue of Object.entries(value)) {
+      let key = keyValue[0];
+      let value = keyValue[1];
+
+      console.log("\t L2 : ", key);
+    }
+  }
+}
