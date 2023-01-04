@@ -44,8 +44,8 @@ const arrowFunction = () => {
   console.log("화살표함수 : ", this);
 };
 
-// normalFunction()
-// arrowFunction()
+normalFunction();
+arrowFunction();
 
 //  객체의 메서드로 함수를 실행할 경우는 일반함수로 실행해야 this가 객체를 찾습니다.
 //  메서드 안에서의 함수는 this를 찾기 위해서는 arrowFunction이 오히려 좋아.
@@ -80,25 +80,52 @@ console.log(user.totalGrades());
 /* 다음 함수를 작성해봅니다. -------------------------------------------------- */
 
 // pow(numeric: number, powerCount: number): number;
-let pow = (...args) => {
+// 내가 작성한 코드
+// let pow = (...args) => {
+//   let result = 1;
+//   while (args[1]) {
+//     result *= args[0];
+//     args[1]--;
+//   }
+//   return result;
+// };
+
+let pow = (numeric, powerCount) => {
   let result = 1;
-  while (args[1]) {
-    result *= args[0];
-    args[1]--;
+  for (let i = 0; i < powerCount; i++) {
+    result *= numeric;
   }
   return result;
 };
 
+let powExpression = (numeric, powerCount) =>
+  Array(powerCount)
+    .fill(null)
+    .reduce((acc) => acc * numeric, 1);
+
 console.log(pow(2, 3));
 
 // repeat(text: string, repeatCount: number): string;
-let repeat = (...args) => {
-  let str = "";
-  while (args[1]) {
-    str += args[0];
-    args[1]--;
+// 내가 작성한 코드
+// let repeat = (...args) => {
+//   let str = "";
+//   while (args[1]) {
+//     str += args[0];
+//     args[1]--;
+//   }
+//   return str;
+// };
+let repeat = (text, repeatCount) => {
+  let result = "";
+  for (let i = 0; i < repeatCount; i++) {
+    result += text;
   }
-  return str;
+  return result;
 };
 
-console.log(repeat("안녕!", 4));
+let repeatExpression = (text, repeatCount) =>
+  Array(repeatCount)
+    .fill(null)
+    .reduce((acc) => acc + text, "");
+
+console.log(repeatExpression("안녕!", 4));
