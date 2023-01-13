@@ -1,6 +1,10 @@
 /* eslint no-undef: "warn" */
 /* eslint no-unused-vars: "off" */
 
+import { getNode } from "./lib/dom/getNode.js"; //우리가 쓸 함수 이름을 정확히 가져와야 함!
+import { attr } from "./lib/dom/attr.js";
+import { css, addClass, removeClass, toggleClass } from "./lib/dom/css.js";
+
 // const firstNumber = getNode("#firstNumber");
 // const secondNumber = getNode("#secondNumber");
 // const done = getNode("#done");
