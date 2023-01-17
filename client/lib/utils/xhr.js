@@ -12,10 +12,11 @@ function xhrData(method, url, body) {
   xhr.open(method, url);
 
   xhr.addEventListener("readystatechange", () => {
-    if (xhr.status >= 200 && xhr.status < 400) {
-      if (xhr.readyState === 4) {
+    const { status, readyState, response } = xhr; //객체 구조 분해 할당
+    if (status >= 200 && status < 400) {
+      if (readyState === 4) {
         console.log("통신 성공");
-        console.log(JSON.parse(xhr.response));
+        console.log(JSON.parse(response));
       }
     } else {
       console.error("통신실패");
