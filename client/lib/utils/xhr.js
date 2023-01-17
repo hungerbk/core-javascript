@@ -16,10 +16,10 @@ function xhrData(options) {
   //     "Content-Type": "application/json",
   //   }
   // 내부적으로 위처럼 적용될 것임!!
-
+  const { method, url, body } = options;
   const xhr = new XMLHttpRequest();
   //비동기 통신 오픈
-  xhr.open(options.method, options.url);
+  xhr.open(method, url);
 
   xhr.addEventListener("readystatechange", () => {
     const { status, readyState, response } = xhr; //객체 구조 분해 할당
@@ -34,7 +34,7 @@ function xhrData(options) {
   });
 
   //서버에 요청
-  xhr.send(JSON.stringify(options.body)); // POST method를 사용한다고 했을 때, 정보를 보내줘야 함. send할 때 같이 보낸다
+  xhr.send(JSON.stringify(body)); // POST method를 사용한다고 했을 때, 정보를 보내줘야 함. send할 때 같이 보낸다
   //open과 send는 세트다!
 }
 
