@@ -6,6 +6,11 @@
 4:complete 완료
 0~1은 거의 찍히지 않는다 */
 
+import { typeError } from "../error/typeError.js";
+
+/* ------------------------------------------------------------------------ */
+// callback 방식
+/* ------------------------------------------------------------------------ */
 export function xhrData({
   method = "GET",
   url = "",
@@ -181,3 +186,65 @@ xhrData.delete = (url, onSuccess, onFail) => {
 //     bs: "harness real-time e-markets",
 //   },
 // });
+
+/* ------------------------------------------------------------------------ */
+// promise API
+/* ------------------------------------------------------------------------ */
+
+const defaultOptions = {
+  url: "",
+  method: "GET",
+  headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+  body: null,
+};
+
+export function xhrPromise(options = {}) {
+  const xhr = new XMLHttpRequest();
+
+  const { method, url, body, headers } = Object.assign({}, defaultOptions, options);
+  //빈 객체 꼭 넣어야 함. defaulOptions 값이 바뀜..! {}를 안 적으면 새로운 객체를 생성하는 것이 아님. {} <-여기에 값을 넣겠다
+
+  if (!url) typeError("서버와 통신할 url 인자는 반드시 필요합니다.");
+  xhr.open(method, url);
+
+  xhr.send(body ? JSON.stringify(body) : null); // 리턴 밑에 있으면 실행이 안 되기 때문에 위로 올라옴!
+
+  return new Promise((resolve, reject) => {
+    xhr.addEventListener("readystatechange", () => {
+      const { status, readyState, response } = xhr;
+
+      if (status >= 200 && status < 400) {
+        if (readyState === 4) {
+          resolve(JSON.parse(response));
+        }
+      } else {
+        reject("에러입니다.");
+      }
+    });
+  });
+}
+
+// xhrPromise({ url: "https://jsonplaceholder.typicode.com/users/1" })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => console.log(err));
+
+xhrPromise.get = (url) => {
+  return xhrPromise({ url }); //promise가 나와야 then을 쓸 수 있기 때문에 promise를 바로 나오게!
+};
+
+xhrPromise.post = (url, body) => {
+  return xhrPromise({ url, method: "POST", body });
+};
+xhrPromise.put = (url, body) => {
+  return xhrPromise({ method: "PUT", url, body });
+};
+xhrPromise.delete = (url) => {
+  return xhrPromise({ method: "DELETE", url });
+};
+
+// xhrPromise
+//   .get("https://jsonplaceholder.typicode.com/users/1")
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
