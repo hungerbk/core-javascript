@@ -68,4 +68,4 @@ async function delayA() {
 
 let result = await delayA();
 
-console.log(result);
+// console.log(result);
