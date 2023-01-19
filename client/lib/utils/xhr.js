@@ -9,7 +9,8 @@
 import { typeError } from "../error/typeError.js";
 
 /* ------------------------------------------------------------------------ */
-// callback 방식
+// xhr 비동기 통신 - callback 방식
+// 우리가 하나하나 정해줘야 함!
 /* ------------------------------------------------------------------------ */
 export function xhrData({
   method = "GET",
@@ -74,6 +75,7 @@ export function xhrData({
 //   },
 // });
 
+// 함수도 객체이기 때문애 아래처럼 작성 가능함!
 // shorthand property 변수와 프로퍼티 키 이름이 같으면 한번만 써도 됨 url:url 이렇게 안 써도 됨
 xhrData.get = (url, onSuccess, onFail) => {
   xhrData({

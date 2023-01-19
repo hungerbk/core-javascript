@@ -17,6 +17,10 @@ function delay(callback, timeout = 1000) {
 //   });
 // });
 
+/* ------------------------------------------------------------------------ */
+// promise
+/* ------------------------------------------------------------------------ */
+
 const defaultOptins = {
   shouldReject: false,
   timeout: 1000,
@@ -63,7 +67,7 @@ export function delayP(options = {}) {
 /* ------------------------------------------------------------------------ */
 
 async function delayA() {
-  return "완료";
+  return "완료"; //promise의 result
 }
 
 let result = await delayA();
