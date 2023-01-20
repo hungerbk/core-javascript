@@ -1,4 +1,4 @@
-import { deleteStorage, getNode, loadStorage, saveStorage, clearContents } from "./lib/index.js";
+import { deleteStorage, getNode, loadStorage, saveStorage } from "./lib/index.js";
 
 const textField = getNode("#textField");
 const deleteButton = getNode('input[value="삭제"]');
@@ -15,7 +15,7 @@ const inputHandler = () => {
 };
 
 const deleteHandler = () => {
-  deleteStorage().then((textField.value = ""));
+  deleteStorage("area").then((textField.value = ""));
 };
 
 textField.addEventListener("input", inputHandler); //값이 추가되는 것을 인지
